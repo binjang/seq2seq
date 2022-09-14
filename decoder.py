@@ -56,6 +56,7 @@ class Decoder(nn.Module):
         batch_size = encoder_last_hidden_states.size(0)
         hidden_state = encoder_last_hidden_states
         step_output = inputs
+
         # if inference
         if inputs is None:
             inputs = torch.LongTensor([self.sos_id] * batch_size).view(batch_size, 1)
@@ -64,3 +65,5 @@ class Decoder(nn.Module):
             for di in range(self.max_decoding_steps):
                 step_output, hidden_state = self.forward_steps(step_output, hidden_state)
                 outputs.append(step_output)
+
+        return outputs, hidden_state

@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from typing import Tuple, Union
 
+
 class Encoder(nn.Module):
     SUPPORTED_RNNS = {
         "rnn": nn.RNN,
@@ -15,13 +16,13 @@ class Encoder(nn.Module):
             embedding_size: int,
             hidden_size: int,
             num_layers: int,
-            bidirectional: boll = True,
-            rnn_type: str = "lstm",
             input_dropout_p: float,
+            bidirectional: bool = True,
+            rnn_type: str = "lstm",
     ) -> None:
         super(Encoder, self).__init__()
         self.embedding = nn.Embedding(input_size, embedding_size)
-        self.input_dropout =  nn.Dropout(p = input_dropout_p)
+        self.input_dropout = nn.Dropout(p=input_dropout_p)
         self.rnn = self.SUPPORTED_RNNS[rnn_type.lower()](
             input_size=embedding_size,
             hidden_size=hidden_size,
