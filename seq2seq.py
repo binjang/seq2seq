@@ -16,13 +16,13 @@ class Seq2seq(nn.Module):
         super(Seq2seq, self).__init__()
         self.encoder = Encoder(
             input_size: int,
-                        embedding_size: int,
+            embedding_size: int,
             hidden_size: int,
             num_layers: int,
             bidirectional: boll = True,
-                                  rnn_type: str = "lstm",
-                                                  input_dropout_p: float,
-        )
+            rnn_type: str = "lstm",
+            input_dropout_p: float,
+            )
         self.decoder = Decoder()
 
     def forward(
@@ -61,7 +61,7 @@ if __name__ == "__main__":
         input_size=10,
         embedding_size=EMBEDDING_DIM,
         hidden_size=HIDDEN_DIM,
-        num_encoding+layers=1,
+        num_encoding_layers=1,
         bidirectional=True,
     )
 
